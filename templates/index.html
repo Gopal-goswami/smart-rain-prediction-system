@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain Prediction System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌧️ Smart Weather System</h1>
+        <form method="post">
+            <input type="text" name="city" placeholder="Enter city" required>
+            <button type="submit">
+                Check Weather
+            </button>
+        </form>
+        {% if weather %}
+        <div class="weather-card">
+            <h2>📍 {{ weather.city }}</h2>
+            <p>🌡️ Temperature: {{ weather.temperature }}°C</p>
+            <p>💧 Humidity: {{ weather.humidity }}%</p>
+            <p>☁️ Clouds: {{ weather.clouds }}%</p>
+            <p>🌬️ Wind Speed: {{ weather.wind_speed }} km/h</p>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
