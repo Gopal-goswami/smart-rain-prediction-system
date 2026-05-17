@@ -3,6 +3,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from weather import get_weather
 import weather
+from prediction import predict_rain
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -22,6 +23,8 @@ def home(request: Request):
 def get_weather_info(request: Request, city: str = Form(...)):
 
     weather_data = get_weather(city)
+    rain_probability = predict_rain(weather_data)
+    weather_data["rain_probability"] = rain_probability
 
     return templates.TemplateResponse(
       request=request,  

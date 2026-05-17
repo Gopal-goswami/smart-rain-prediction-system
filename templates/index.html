@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rain Prediction System</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>🌧️ Smart Weather System</h1>
@@ -17,14 +19,35 @@
         </form>
         {% if weather %}
         <div class="weather-card">
+
             <h2>📍 {{ weather.city }}</h2>
+
             <p>🌡️ Temperature: {{ weather.temperature }}°C</p>
+
+            <p>🥵 Feels Like: {{ weather.feels_like }}°C</p>
+
             <p>💧 Humidity: {{ weather.humidity }}%</p>
+
             <p>☁️ Clouds: {{ weather.clouds }}%</p>
+
             <p>🌬️ Wind Speed: {{ weather.wind_speed }} km/h</p>
+
+            <p>🧭 Wind Direction: {{ weather.wind_direction }}°</p>
+
+            <p>📉 Pressure: {{ weather.pressure }} hPa</p>
+
+            <p>👀 Visibility: {{ weather.visibility }} meters</p>
+
+            <p>🌦️ Condition: {{ weather.condition }}</p>
+
+            <p>📝 Description: {{ weather.description }}</p>
+
+            <p>🌧️ Rain Probability: {{ weather.rain_probability }}%</p>
+
         </div>
         {% endif %}
 
     </div>
 </body>
+
 </html>
