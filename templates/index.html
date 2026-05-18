@@ -46,6 +46,31 @@
 
         </div>
         {% endif %}
+        <h1 class="section-title">
+            Nearby Weather Analysis
+        </h1>
+
+        <div class="nearby-container">
+
+            {% for city in nearby_weather %}
+
+            <div class="nearby-card">
+
+                <h2>📍 {{ city.city }}</h2>
+
+                <p>🌦️ {{ city.condition }}</p>
+
+                <p>💧 Humidity: {{ city.humidity }}%</p>
+
+                <p>☁️ Clouds: {{ city.clouds }}%</p>
+
+                <p>🌬️ Wind: {{ city.wind_speed }} km/h</p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
 
     </div>
 </body>

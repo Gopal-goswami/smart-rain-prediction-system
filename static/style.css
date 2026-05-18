@@ -113,3 +113,50 @@ button:hover{
 
     font-size: 18px;
 }
+.section-title{
+
+    margin-top: 40px;
+
+    text-align: center;
+
+    font-size: 32px;
+}
+
+
+.nearby-container{
+
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+
+.nearby-card{
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+    transition: 0.3s;
+}
+
+
+.nearby-card:hover{
+
+    transform: translateY(-5px);
+}
