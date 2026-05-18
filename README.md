@@ -61,3 +61,11 @@ uvicorn main:app --reload
 ✅ Phase 1 Completed  
 ✅ Phase 2 Completed  
 🔄 Phase 3 In Progress
+## 🌍 Phase 3 Upgrades
+
+Phase 3 introduces regional weather intelligence features:
+
+- Detects nearby rainy locations automatically
+- Scans nearby regions using coordinates
+- Shows nearby locations where rain is currently happening
+✅ Phase 3 Completed
