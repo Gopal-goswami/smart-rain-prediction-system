@@ -1,63 +1,233 @@
-# 🌧️ Smart Rain Prediction System
+# 🌧 Smart Weather Dashboard
 
-A modern weather prediction system built using FastAPI and OpenWeather API.
+A modern weather monitoring and rain prediction system built with **FastAPI**, **HTML**, **CSS**, and **JavaScript**. The application provides real-time weather data, air quality information, rain probability, nearby rain analysis, hourly forecasts, and a 10-day weather forecast in a responsive dashboard.
 
-## 🚀 Features
+---
 
-- Live weather monitoring
-- Intelligent rain probability prediction
-- Humidity analysis
-- Pressure analysis
-- Cloud coverage tracking
-- Wind speed analysis
-- Visibility analysis
-- Modern dashboard UI
+## 📌 Features
 
-## 🛠️ Tech Stack
+### 🌤 Current Weather
 
-- Python
-- FastAPI
-- HTML
-- CSS
-- OpenWeather API
+* Real-time weather information
+* Temperature
+* Feels-like temperature
+* Humidity
+* Wind speed
+* Wind direction
+* Atmospheric pressure
+* Visibility
+* Cloud coverage
+
+### 💧 Rain Probability
+
+* Displays the probability of rainfall for the selected location.
+
+### 🌦 Nearby Rain Analysis
+
+* Detects nearby rainy locations.
+* Calculates the nearest rain system.
+* Estimates rain arrival time.
+* Displays confidence level for rain prediction.
+
+### 🌫 Air Quality Index (AQI)
+
+* Shows air quality status for the selected location.
+
+### ⏰ Hourly Forecast
+
+* Weather forecast for the next 24 hours.
+* Temperature
+* RealFeel temperature
+* Rain probability
+
+### 📅 10-Day Forecast
+
+* Daily weather forecast.
+* Maximum temperature
+* Minimum temperature
+* Rain probability
+
+### 📱 Responsive Design
+
+* Optimized for desktop and mobile devices.
+
+### 📍 Location Support
+
+* Search weather by city.
+* Use current device location.
+* Select location from an interactive map.
+
+---
+
+## 🛠 Technologies Used
+
+### Backend
+
+* FastAPI
+* Python
+* Requests
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+
+### APIs
+
+* OpenWeather API
+* OpenWeather Air Pollution API
+* OpenWeather Forecast API
+
+### Mapping
+
+* Leaflet.js
+
+---
 
 ## 📂 Project Structure
 
-```bash
-Rain_pridiction_system/
-
+```text
+Smart-Weather-Dashboard/
+│
+├── static/
+│   ├── dashboard.css
+│   ├── dashboard.js
+│   ├── script.js
+│   └── rainy_background.png
+│
+├── templates/
+│   ├── home.html
+│   └── dashboard.html
+│
 ├── main.py
 ├── weather.py
+├── nearby.py
 ├── prediction.py
-├── templates/
-├── static/
+├── distance.py
+├── arrival_time.py
+├── README.md
 ├── .env
-└── README.md
+└── .gitignore
 ```
 
-## ⚡ Installation
+---
+
+## ⚙️ Installation
+
+### 1. Clone Repository
 
 ```bash
-git clone YOUR_REPO_URL
+git clone https://github.com/your-username/smart-weather-dashboard.git
+cd smart-weather-dashboard
+```
 
-cd smart-rain-prediction-system
+### 2. Create Virtual Environment
 
+```bash
+python -m venv venv
+```
+
+Activate Environment:
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Linux / Mac
+
+```bash
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
+### 4. Create .env File
+
+```env
+WEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
+```
+
+### 5. Run Application
+
+```bash
 uvicorn main:app --reload
 ```
 
-## 🌪️ Future Plans
+Open:
 
-- Nearby rain detection
-- Wind direction analysis
-- Forecast prediction
-- AI/ML weather prediction
-- Rain alerts system
-- Radar visualization
+```text
+http://127.0.0.1:8000
+```
 
-## 📌 Project Status
+---
 
-✅ Phase 1 Completed  
-✅ Phase 2 Completed  
-🔄 Phase 3 In Progress
+## 🚀 How It Works
+
+1. User selects a location using:
+
+   * City search
+   * Current location
+   * Interactive map
+
+2. The system fetches:
+
+   * Current weather
+   * AQI data
+   * Forecast data
+
+3. Nearby locations are analyzed to:
+
+   * Detect rainfall activity
+   * Calculate rain movement
+   * Estimate rain arrival time
+
+4. Results are displayed in a responsive dashboard.
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Mobile View
+
+![Mobile View](screenshots/phone_view.png)
+
+---
+
+## 🎯 Future Improvements
+
+* Weather alerts and notifications
+* Severe weather warnings
+* Radar visualization
+* Historical weather data
+* User authentication
+* Weather analytics dashboard
+* Multi-language support
+
+---
+
+## 👨‍💻 Author
+
+Gopal Goswami
+
+B.Tech Student | Python Developer | FastAPI Enthusiast
+
+---
+
+## 📄 License
+
+This project is developed for educational and learning purposes.

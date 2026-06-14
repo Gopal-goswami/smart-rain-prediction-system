@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Weather</title>
+    <link rel="stylesheet" href="\static\style.css">
+    <link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <nav>
+        <h2>🌧️ Smart Weather</h2>
+    </nav>
+
+    <div id="main-content">
+        <h1>Welcome to Smart Weather</h1>
+        <p>
+            Know about the weather in your area with our advanced forecasting technology.
+        </p>
+    </div>
+
+    <div class="search-container">
+
+        <form action="/dashboard" method="get">
+
+            <input
+                type="text"
+                id="city"
+                name="location"
+                placeholder="Enter City Name"
+                required
+            >
+            <input type="hidden" id="lat" name="lat">
+            <input type="hidden" id="lon" name="lon">
+
+            <button type="submit">
+                Get Weather
+            </button>
+
+        </form>
+
+        <!-- Hidden Options -->
+
+        <div class="options" id="options">
+
+            <button type="button" id="currentLocationBtn">
+                📍 Use Current Location
+            </button>
+
+            <button type="button" id="mapBtn">
+                🗺️ Choose From Map
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- MAP MODAL -->
+
+    <div class="modal" id="mapModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Select Location</h2>
+
+                <span id="closeBtn">&times;</span>
+
+            </div>
+
+            <div id="map">
+
+            </div>
+
+            <div class="selected-location">
+
+                <p>
+                    Selected Location:
+                    <span id="selectedLocation">
+                        Not Selected
+                    </span>
+                </p>
+
+                <button
+                    type="button"
+                    id="checkWeatherBtn"
+                    disabled
+                >
+                    Check Weather
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="\static\script.js"></script>
+
+</body>
+</html>

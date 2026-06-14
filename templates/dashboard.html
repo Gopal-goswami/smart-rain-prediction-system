@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Weather Dashboard</title>
+
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <h1>🌧 Smart Weather</h1>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link" onclick="showSection('today', this)">
+                    Today
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link" onclick="showSection('hourly', this)">
+                    Hourly
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link" onclick="showSection('forecast', this)">
+                    10-Day
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <main class="container">
+
+        <!-- LOCATION -->
+
+        <section id="today" class="content-section">
+
+            <h1 style="color:black ;">Today</h1>
+
+            <h2 style="color:black ;">
+                {{ weather.city }}
+            </h2>
+
+
+
+            <!-- CURRENT WEATHER -->
+
+            <section class="weather-card">
+
+                <div class="left">
+
+                    <img src="{{ weather.icon }}" alt="weather">
+
+                    <div>
+
+                        <h1>
+                            {{ weather.temperature }}°C
+                        </h1>
+
+                        <h2>
+                            {{ weather.condition }}
+                        </h2>
+
+                        <p>
+                            Feels Like
+                            {{ weather.feels_like }}°C
+                        </p>
+                        <h2>Rain Probability 💧{{weather.rain_probability}}%</h2>
+
+                    </div>
+
+                </div>
+
+                <div class="right">
+
+                    <div>
+                        Humidity
+                        <span>
+                            {{ weather.humidity }}%
+                        </span>
+                    </div>
+
+                    <div>
+                        Wind Speed
+                        <span>
+                            {{ weather.wind_speed }} km/h
+                        </span>
+                    </div>
+
+                    <div>
+                        Wind Direction
+                        <span>
+                            {{ weather.wind_direction }}°
+                        </span>
+                    </div>
+
+                    <div>
+                        Pressure
+                        <span>
+                            {{ weather.pressure }} hPa
+                        </span>
+                    </div>
+
+                    <div>
+                        Visibility
+                        <span>
+                            {{ weather.visibility }}m
+                        </span>
+                    </div>
+
+                    <div>
+                        Cloud Cover
+                        <span>
+                            {{ weather.clouds }}%
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- TODAY OVERVIEW -->
+
+            <section class="overview">
+
+                <h2 style="color:black ;">Today's Overview</h2>
+
+                <div class="grid">
+
+                    <div class="mini-card">
+                        Humidity
+                        <span>
+                            {{ weather.humidity }}%
+                        </span>
+                    </div>
+
+                    <div class="mini-card">
+                        Wind Speed
+                        <span>
+                            {{ weather.wind_speed }}
+                        </span>
+                    </div>
+
+                    <div class="mini-card">
+                        Pressure
+                        <span>
+                            {{ weather.pressure }}
+                        </span>
+                    </div>
+
+                    <div class="mini-card">
+                        Visibility
+                        <span>
+                            {{ weather.visibility }}
+                        </span>
+                    </div>
+
+                    <div class="mini-card">
+                        Clouds
+                        <span>
+                            {{ weather.clouds }}%
+                        </span>
+                    </div>
+
+                    <div class="mini-card">
+                        Feels Like
+                        <span>
+                            {{ weather.feels_like }}°C
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- AQI -->
+
+            <section class="aqi-card">
+
+                <div class="aqi-content">
+
+                    <div class="aqi-circle">
+
+                        Air Quality
+
+                    </div>
+
+                    <div class="aqi-status">
+
+                        <h2>{{ aqi.status }}</h2>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- NEARBY RAIN -->
+
+            <section class="nearby-card">
+
+                <h2 style="color:black;">
+                    Nearby Rain Analysis
+                </h2>
+
+                {% if nearest_rain %}
+
+                <!-- Nearest Rain Card -->
+
+                <h3 style="color:black;">
+                    🌧 Nearest Rain System
+                </h3>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <tr>
+                            <th>Location</th>
+                            <th>Distance</th>
+                            <th>Condition</th>
+                            <th>Wind</th>
+                            <th>Arrival Time</th>
+                            <th>Confidence</th>
+                        </tr>
+                        <tr>
+                            <td>{{ nearest_rain.city }}</td>
+
+                            <td>
+                                {{ nearest_rain.distance }} km
+                            </td>
+
+                            <td>
+                                {{ nearest_rain.condition }}
+                            </td>
+
+                            <td>
+                                {{ nearest_rain.wind_speed }} km/h
+                            </td>
+
+                            <td>
+                                {{arrival_time }}min
+                            </td>
+
+                            <td>
+                                {{ confidence }}
+                            </td>
+
+                    </table>
+                </div>
+                <!-- Other Nearby Rain Areas -->
+
+                {% if top_rain_locations %}
+
+                <h3 style="color:black;">
+                    🌦 Other Nearby Rain Areas
+                </h3>
+
+                <div style="overflow-x:auto;">
+                    <table>
+
+                        <tr>
+                            <th>Location</th>
+                            <th>Distance</th>
+                            <th>Condition</th>
+                            <th>Wind</th>
+                        </tr>
+
+                        {% for rain in top_rain_locations %}
+
+                        <tr>
+                            <td>{{ rain.city }}</td>
+
+                            <td>
+                                {{ rain.distance }} km
+                            </td>
+
+                            <td>
+                                {{ rain.condition }}
+                            </td>
+
+                            <td>
+                                {{ rain.wind_speed }} km/h
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </table>
+                </div>
+
+                {% endif %}
+
+                {% else %}
+
+                <h3 style="color:black;">
+                    No Nearby Rain Found
+                </h3>
+
+                {% endif %}
+
+            </section>
+        </section>
+
+        <section id="hourly" class="content-section">
+
+            <div class="section-title">
+
+                <h2 style="color:black ;">⏰ Hourly Forecast</h2>
+
+                <p>Next 24 Hours Weather</p>
+
+            </div>
+
+            <div class="hourly-container">
+
+                {% for hour in hourly_forecast %}
+
+                <div class="hour-card">
+
+                    <div class="hour-time">
+
+                        {{ hour.time }}
+
+                    </div>
+
+                    <div class="hour-main">
+
+                        <img src="{{ hour.icon }}" alt="weather">
+
+                        <span class="hour-temp">
+
+                            {{ hour.temp }}°C
+
+                        </span>
+
+                    </div>
+
+                    <div class="hour-feels">
+
+                        RealFeel {{ hour.feels_like }}°C
+
+                    </div>
+
+                    <div class="hour-rain">
+
+                        💧 {{ hour.rain_probability }}%
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+        <section id="forecast" class="content-section">
+
+            <div class="section-title">
+
+                <h2 style="color:black ;">📅 10-Day Forecast</h2>
+
+                <p style="color:black ;">Upcoming Weather Forecast</p>
+
+            </div>
+
+            <div class="forecast-container">
+
+                {% for day in forecast %}
+
+                <div class="forecast-card">
+
+                    <div class="forecast-date">
+
+                        {{ day.date }}
+
+                    </div>
+
+                    <div class="forecast-main">
+
+                        <img src="{{ day.icon }}" alt="weather">
+
+                        <span class="forecast-temp">
+
+                            {{ day.max_temp }}°
+                        </span>
+
+                    </div>
+
+                    <div class="forecast-min">
+
+                        Min {{ day.min_temp }}°
+                    </div>
+
+                    <div class="forecast-rain">
+
+                        💧 {{ day.rain_probability }}%
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </main>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const latitude = Number("{{ lat }}");
+        const longitude = Number("{{ lon }}");
+    </script>
+    <script src="/static/dashboard.js"></script>
+</body>
+
+</html>

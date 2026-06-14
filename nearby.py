@@ -1,30 +1,35 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from distance import calculate_distance
+
+
 def get_nearby_points(lat, lon):
 
-    nearby_points = [
+    points = []
 
-        # North
-        (lat + 0.5, lon),
+    for dlat in [-1, -0.5, 0, 0.5, 1]:
+        for dlon in [-1, -0.5, 0, 0.5, 1]:
 
-        # South
-        (lat - 0.5, lon),
+            if dlat == 0 and dlon == 0:
+                continue
 
-        # East
-        (lat, lon + 0.5),
+            nearby_lat = lat + dlat
+            nearby_lon = lon + dlon
 
-        # West
-        (lat, lon - 0.5),
+            distance = calculate_distance(
+                lat,
+                lon,
+                nearby_lat,
+                nearby_lon
+            )
 
-        # North-East
-        (lat + 0.5, lon + 0.5),
+            points.append({
+                "lat": nearby_lat,
+                "lon": nearby_lon,
+                "distance": round(distance, 2)
+            })
 
-        # North-West
-        (lat + 0.5, lon - 0.5),
-
-        # South-East
-        (lat - 0.5, lon + 0.5),
-
-        # South-West
-        (lat - 0.5, lon - 0.5)
-    ]
-
-    return nearby_points
+    return points

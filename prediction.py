@@ -1,76 +1,73 @@
-def predict_rain(weather_data, nearby_weather):
+def predict_rain(weather, nearest_rain=None):
 
-    rain_probability = 0  
-  # Humidity Logic
-  
-    if weather_data["humidity"] > 80:
-
-        rain_probability += 25
-
-    elif weather_data["humidity"] > 60:
-
-        rain_probability += 15
-
-    # Cloud Logic
-   
-    if weather_data["clouds"] > 80:
-
-        rain_probability += 25
-
-    elif weather_data["clouds"] > 60:
-
-        rain_probability += 15
-
-    # Pressure Logic
-
-    if weather_data["pressure"] < 1000:
-
-        rain_probability += 15
-
-    # Wind Speed Logic
-    
-    if weather_data["wind_speed"] > 10:
-
-        rain_probability += 10
-
-    # Wind Direction Logic
-
-    wind_direction = weather_data["wind_direction"]
-
-    # Wind coming from North side
-    if 300 <= wind_direction <= 360 or 0 <= wind_direction <= 60:
-
-        rain_probability += 10
-
-    # Nearby Rain Logic
-
-    rain_detected = False
-
-    for city in nearby_weather:
-
-        if city["condition"] == "Rain":
-
-            rain_probability += 10
-
-            rain_detected = True
+    probability = 0
 
 
-        elif city["condition"] == "Thunderstorm":
+    # =========================
+    # HUMIDITY
+    # =========================
 
-            rain_probability += 15
+    if weather["humidity"] > 80:
 
-            rain_detected = True
+        probability += 35
 
-    # Combined Smart Logic
+    elif weather["humidity"] > 60:
 
-    if rain_detected and weather_data["wind_speed"] > 10:
-
-        rain_probability += 10
-
-
-    if rain_probability > 100:
-
-        rain_probability = 100
+        probability += 20
 
 
-    return rain_probability
+    # =========================
+    # CLOUDS
+    # =========================
+
+    if weather["clouds"] > 80:
+
+        probability += 30
+
+    elif weather["clouds"] > 60:
+
+        probability += 15
+
+
+    # =========================
+    # CURRENT WEATHER CONDITION
+    # =========================
+
+    if weather["condition"] in [
+
+        "Rain",
+
+        "Drizzle",
+
+        "Thunderstorm"
+    ]:
+
+        probability += 40
+
+
+    # =========================
+    # WIND SPEED
+    # =========================
+
+    if weather["wind_speed"] > 15:
+
+        probability += 10
+
+
+    # =========================
+    # NEARBY RAIN EFFECT
+    # =========================
+
+    if nearest_rain:
+
+        probability += 20
+
+
+    # =========================
+    # LIMIT MAX 100
+    # =========================
+
+    probability = min(probability, 100)
+
+
+    return probability

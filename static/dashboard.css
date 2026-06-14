@@ -1,0 +1,640 @@
+body{
+
+    margin:0;
+
+    background: rgb(202, 195, 195);
+    color: rgb(0, 0, 0);
+
+    font-family:Segoe UI,sans-serif;
+}
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:20px 50px;
+
+    background:#031f43;
+}
+
+.navbar ul{
+
+    display:flex;
+
+    gap:25px;
+
+    list-style:none;
+}
+
+.navbar a{
+
+    color:white;
+
+    text-decoration:none;
+}
+
+.container{
+
+    width: 1100px;
+    margin:auto;
+}
+
+.location-info{
+
+    margin:30px 0;
+}
+
+.weather-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap: 10px;
+    width:1100px;
+    color: #000;
+}
+
+.left{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+}
+
+.left img{
+    height:120px;
+    width: 120px;
+}
+
+.left h1{
+
+    font-size:28px;
+
+    margin:0;
+}
+
+.right{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+}
+
+.right div{
+
+    background:#ffffff;
+
+    padding:5px;
+
+    border-radius:15px;
+}
+
+.right span{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:20px;
+
+    font-weight:bold;
+}
+
+.overview{
+    
+    width: 1100px;
+    margin-top:30px;
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.mini-card{
+
+    background:#ffffff;
+
+    padding:25px;
+
+    border-radius:15px;
+    color: #000;
+}
+
+.mini-card span{
+
+    display:block;
+
+    margin-top:15px;
+
+    font-size:28px;
+}
+
+.aqi-card{
+
+    margin-top:30px;
+
+    background:#ffffff;
+
+    padding:30px;
+
+    border-radius:20px;
+    color: #000;
+    width: 1100px;
+}
+
+.aqi-content{
+
+    display:flex;
+
+    gap:50px;
+
+    align-items:center;
+}
+
+
+.nearby-card {
+
+    margin-top: 30px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    width: 1100px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    overflow-x: auto;
+}
+
+.nearby-card h2,
+.nearby-card h3 {
+
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.nearby-card table {
+
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.nearby-card th {
+
+    background: #f4f6f8;
+    color: #333;
+
+    padding: 14px;
+    text-align: center;
+
+    font-weight: 600;
+}
+
+.nearby-card td {
+
+    padding: 14px;
+    text-align: center;
+    -ms-text-combine-horizontal: all;
+
+    color: #444;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.nearby-card tr:hover {
+
+    background: #f9fafb;
+    transition: 0.3s;
+}
+
+.nearby-card table {
+
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.nearby-card h3 {
+
+    margin-top: 25px;
+    padding-bottom: 8px;
+
+    border-bottom: 2px solid #e5e7eb;
+}
+
+
+
+/*====================================
+   HOURLY FORECAST SECTION
+==================================== */
+
+/* Hourly Section */
+.hourly-container {
+    width: 1100px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;   /* Horizontal ki jagah vertical */
+    gap: 15px;
+}
+
+/* Single Hour Card */
+.hour-card {
+    background: white;
+    color: black;
+
+    width: 100%;
+    padding: 15px 20px;
+
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ensure all text black */
+.hour-card * {
+    color: black;
+}
+
+/* Weather Icon */
+.hour-card img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Time */
+.hour-time {
+    font-weight: bold;
+    width: 150px;
+}
+
+/* Temp + Icon */
+.hour-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Temperature */
+.hour-temp {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Feels Like */
+.hour-feels {
+    width: 180px;
+}
+
+/* Rain Probability */
+.hour-rain {
+    width: 120px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .hourly-container {
+        width: 95%;
+    }
+
+    .hour-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .hour-time,
+    .hour-feels,
+    .hour-rain {
+        width: 100%;
+    }
+
+    .hour-main {
+        justify-content: center;
+    }
+
+    .hour-card img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .hour-temp {
+        font-size: 20px;
+    }
+}
+/* ====================================
+   10 DAY FORECAST SECTION
+==================================== */
+
+/* Forecast Container */
+.forecast-container {
+    width: 1100px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Forecast Card */
+.forecast-card {
+    background: white;
+    color: black;
+
+    width: 100%;
+    padding: 15px 20px;
+
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* All text black */
+.forecast-card * {
+    color: black;
+}
+
+/* Date */
+.forecast-date {
+    width: 180px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Weather Icon + Temp */
+.forecast-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.forecast-main img {
+    width: 50px;
+    height: 50px;
+}
+
+.forecast-temp {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Minimum Temperature */
+.forecast-min {
+    width: 150px;
+}
+
+/* Rain Probability */
+.forecast-rain {
+    width: 120px;
+}
+
+/* =========================
+   Mobile Responsive Design
+========================= */
+@media (max-width: 768px) {
+
+    .forecast-container {
+        width: 95%;
+    }
+
+    .forecast-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .forecast-date,
+    .forecast-min,
+    .forecast-rain {
+        width: 100%;
+    }
+
+    .forecast-main {
+        justify-content: center;
+    }
+
+    .forecast-main img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .forecast-temp {
+        font-size: 20px;
+    }
+}
+
+/* Section Title */
+
+.nav-link{
+
+    color:white;
+
+    text-decoration:none;
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    transition:0.3s;
+
+}
+
+.nav-link:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.nav-link.active{
+
+    background:#1e88e5;
+
+    color:white;
+
+    box-shadow:
+    0 0 15px rgba(30,136,229,.5);
+
+}
+.content-section {
+    padding: 30px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.hour-main img{
+    width:48px;
+    height:48px;
+}
+/* ====================================
+   MOBILE RESPONSIVE FIX
+   Add at the END of dashboard.css
+==================================== */
+
+@media screen and (max-width:768px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    .container{
+        width:100% !important;
+        padding:0 10px;
+        box-sizing:border-box;
+    }
+
+    .navbar{
+        flex-direction:column;
+        align-items:center;
+        padding:15px;
+    }
+
+    .navbar .logo h1{
+        font-size:24px;
+        text-align:center;
+    }
+
+    .navbar ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+        padding:0;
+        margin:10px 0 0;
+    }
+
+    .weather-card,
+    .overview,
+    .aqi-card,
+    .nearby-card,
+    .hourly-container,
+    .forecast-container{
+        width:100% !important;
+        max-width:100% !important;
+        box-sizing:border-box;
+    }
+
+    .weather-card{
+        flex-direction:column;
+        padding:20px;
+    }
+
+    .left{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .left img{
+        width:90px;
+        height:90px;
+    }
+
+    .left h1{
+        font-size:24px;
+    }
+
+    .right{
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .mini-card span{
+        font-size:22px;
+    }
+
+    .aqi-content{
+        flex-direction:column;
+        gap:20px;
+        text-align:center;
+    }
+
+    .nearby-card{
+        overflow-x:auto;
+    }
+
+    .nearby-card table{
+        min-width:600px;
+    }
+
+    .hour-card{
+        flex-direction:column;
+        text-align:center;
+        gap:10px;
+    }
+
+    .hour-time,
+    .hour-feels,
+    .hour-rain{
+        width:auto;
+    }
+
+    .hour-main{
+        justify-content:center;
+    }
+
+    .forecast-card{
+        flex-direction:column;
+        text-align:center;
+        gap:10px;
+    }
+
+    .forecast-date,
+    .forecast-min,
+    .forecast-rain{
+        width:auto;
+    }
+
+    .forecast-main{
+        justify-content:center;
+    }
+
+    .forecast-main img,
+    .hour-card img{
+        width:45px;
+        height:45px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    h2{
+        font-size:20px;
+    }
+
+    h3{
+        font-size:18px;
+    }
+}
