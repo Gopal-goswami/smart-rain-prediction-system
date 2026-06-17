@@ -22,9 +22,15 @@ def get_weather(lat, lon):
 
     response = requests.get(url)
     data = response.json()
+    print("API_KEY =", API_KEY)
+    print("Weather data:", data)
+
+    if "dt" not in data:
+      print("OPENWEATHER RESPONSE =", data)
+      return {"error": str(data)}
 
     local_dt = datetime.datetime.utcfromtimestamp(
-        data["dt"] + data.get("timezone", 0)
+    data["dt"] + data.get("timezone", 0)
     )
 
     return {
