@@ -204,7 +204,7 @@ http://127.0.0.1:8000
 
 ### Mobile View
 
-![Mobile View](screenshots/phone_view.png)
+![Mobile View](screenshots/Phone_view.png)
 
 ---
 
