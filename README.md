@@ -4,6 +4,11 @@ A modern weather monitoring and rain prediction system built with **FastAPI**, *
 
 ---
 
+
+## Live Demo
+URL https://smart-rain-prediction-system.onrender.com
+
+
 ## 📌 Features
 
 ### 🌤 Current Weather
