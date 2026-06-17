@@ -73,10 +73,13 @@ async () => {
 /* Check Weather Button */
 
 checkWeatherBtn.addEventListener("click", () => {
-   
+    checkWeatherBtn.disabled = true;
+    checkWeatherBtn.textContent = "Loading...";
     document.querySelector("form").submit();
 
 });
+let getWeatherBtn = document.getElementById("getWeatherBtn");
+
 let map;
 let marker;
 
@@ -174,6 +177,8 @@ document.querySelector("form")
     }
 
     e.preventDefault();
+    getWeatherBtn.disabled = true;
+    getWeatherBtn.textContent = "Loading...";
 
     const city =
     cityInput.value.trim();
@@ -196,5 +201,13 @@ document.querySelector("form")
 
         this.submit();
     }
+
+});
+window.addEventListener("pageshow", () => {
+
+    checkWeatherBtn.disabled = false;
+    checkWeatherBtn.textContent = "Get Weather";
+    getWeatherBtn.disabled = false;
+    getWeatherBtn.textContent = "Get Weather";
 
 });

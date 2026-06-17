@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 
 from arrival_time import calculate_arrival_time
 from nearby import get_nearby_points
+from typing import Optional
 
 from weather import (
     get_hourly_forecast,
@@ -39,7 +40,7 @@ def home(request: Request):
 # ======================================
 
 @app.get("/dashboard")
-async def dashboard(request: Request, lat: float, lon: float):
+async def dashboard(request: Request,  lat: float, lon: float):
 
     weather_data = get_weather(lat, lon)
     hourly_forecast = get_hourly_forecast(lat, lon)
@@ -77,11 +78,6 @@ async def dashboard(request: Request, lat: float, lon: float):
 
             # Rain ya strong cloud system detect
             if (data.get("condition") in rain_conditions or data.get("clouds", 0) > 85 or data.get("humidity", 0) > 80):
-
-                print(
-                    "WEATHER SYSTEM FOUND:",
-                    data["city"]
-                )
 
                 data["distance"] = point["distance"]
 
